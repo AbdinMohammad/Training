@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration monitorInterval="300">
+
+    <Properties>
+        <Property name="logdir">D:\projects\ChallengeTwo\logs</Property>
+        <Property name="layout">%d [%t] %-5p %c- %m%n</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="LOCALHOST"
+                     fileName="${logdir}/test.log"
+                     filePattern="${logdir}/test.%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${layout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="5 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="100" />
+        </RollingFile>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%5p [%t] - %m%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="LOCALHOST"/>
+        </Root>
+    </Loggers>
+</Configuration>
